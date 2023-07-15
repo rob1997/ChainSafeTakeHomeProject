@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 8becab92f660d0648b0c87dae54352e6
+  m_SerializeEntries:
+  - m_GUID: b091e6b62ffb61144b7facae65128d24
+    m_Address: Assets/StoreUiMenu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d4ae0d5348915794091743b73bc5bcf5
+    m_Address: Assets/LoginUiMenu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b643b234a3148b048b5b28c3645c2f35
+    m_Address: Assets/TopUiMenu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 48f577db4eee0ca4e9b3ec167f7791bd
+    m_Address: Assets/CoreSystem.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5d4294a47c164df4aa6069e50865d2af
+    m_Address: Assets/InventoryUiMenu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f0a15ee76fc9a5049a8a8bb4ddc160c0
+    m_Address: Assets/Art/Textures/BlueShoes.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: a947733d22866814685b726ba1d4c48c, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 5e5fe654af244fc419b13d6213364d45, type: 2}
+    - {fileID: 11400000, guid: 5af9a4bd73d678e4db7a42d96c67b82b, type: 2}
