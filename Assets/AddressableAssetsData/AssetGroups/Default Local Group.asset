@@ -37,8 +37,68 @@ MonoBehaviour:
     m_Address: Assets/InventoryUiMenu.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: f0a15ee76fc9a5049a8a8bb4ddc160c0
+  - m_GUID: 0e7c9cc24f441d84c8bd06e4d20b001d
     m_Address: Assets/Art/Textures/BlueShoes.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 64f0f63779559df4784490a07e84025f
+    m_Address: Assets/Art/Textures/WhiteShoes.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 19bac049365d2f4479eff56b1aac8550
+    m_Address: Assets/Art/Textures/GreenShoes.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a8e36a0579b944545b3f92188f23f939
+    m_Address: Assets/Art/Textures/RedShoes.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0626da18c2727764b9c3d7db4e5973a5
+    m_Address: Assets/Art/Textures/WhiteJacket.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4534bc84bb0a60747ba88695cdc9cd47
+    m_Address: Assets/Art/Textures/RedHat.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f89aa0ecb38d78a48a6e4bf5949acf18
+    m_Address: Assets/Art/Textures/GreenJacket.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2c92a08bec72815408108103aa7732f2
+    m_Address: Assets/Art/Textures/WhitePants.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f1e3547687b298c4baa8290fd6b13bb3
+    m_Address: Assets/Art/Textures/WhiteHat.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a5ec154bf23107043b17778f904ba601
+    m_Address: Assets/Art/Textures/BlueJacket.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 71dfd519cb2584f4f90e0f2a3fa16ec4
+    m_Address: Assets/Art/Textures/BluePants.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cb0617b1bc3ebcc469475de1ef923f32
+    m_Address: Assets/Art/Textures/GreenPants.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3c10cb7cdf04ccb4c8554994d79fa094
+    m_Address: Assets/Art/Textures/GreenHat.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5203845317e9e1d489d30be509eedc97
+    m_Address: Assets/Art/Textures/RedPants.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 712d9ed8df0b4c24eb3d7dfd028a40d7
+    m_Address: Assets/Art/Textures/RedJacket.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7e8ad1cadb54e6544a85e9814bc4b467
+    m_Address: Assets/Art/Textures/BlueHat.png
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

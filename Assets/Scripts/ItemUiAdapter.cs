@@ -29,6 +29,8 @@ public class ItemUiAdapter : MonoBehaviour
     public void Attach(IItemData itemData)
     {
         _itemData = itemData;
+
+        AttachIcon();
         
         _displayNameLabel.text = _itemData.DisplayName;
         
@@ -56,6 +58,14 @@ public class ItemUiAdapter : MonoBehaviour
                 
                 break;
         }
+    }
+
+    private void AttachIcon()
+    {
+        Utils.LoadAsset<Texture2D>(_itemData.SpriteAssetPath, result =>
+        {
+            _itemIcon.sprite = Sprite.Create(result, new Rect(0f, 0f, result.width, result.height), Vector2.zero);
+        });
     }
 
     private void EquipItem()

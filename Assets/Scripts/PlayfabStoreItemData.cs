@@ -15,7 +15,7 @@ public struct PlayfabStoreItemData : IItemData
     [JsonProperty("category")]
     public ItemCategory Category { get; private set; }
     
-    [JsonProperty("spriteAssetUrl")]
+    [JsonProperty("spriteAssetPath")]
     public string SpriteAssetPath { get; private set; }
     
     [JsonIgnore] public CatalogItem PlayfabItem { get; private set; }
