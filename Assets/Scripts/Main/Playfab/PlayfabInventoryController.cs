@@ -1,39 +1,18 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Core.Character;
 using Newtonsoft.Json;
 using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine;
 
-public class InventoryController : Controller
+public class PlayfabInventoryController : InventoryController
 {
-    #region InventoryInitialized
-
-    public delegate void InventoryInitialized();
-
-    public event InventoryInitialized OnInventoryInitialized;
-
-    private void InvokeInventoryInitialized()
-    {
-        IsInventoryInitialized = true;
-        
-        Debug.Log("inventory initialized");
-        
-        OnInventoryInitialized?.Invoke();
-    }
-
-    #endregion
-
-    public bool IsInventoryInitialized { get; private set; }
-
+    public override Bag Bag { get; protected set; } = new PlayfabBag();
+    
     private bool _itemsInitialized;
     
     private bool _slotsInitialized;
-    
-    public Bag Bag { get; private set; } = new Bag();
     
     public override void Initialize(Character character)
     {
@@ -52,12 +31,12 @@ public class InventoryController : Controller
     {
         PlayFabClientAPI.GetUserInventory(new GetUserInventoryRequest(), ItemsInitialized, error =>
         {
-            PlayfabUserManager.LogFailedRequest("Get user inventory request failed", error);
+            error.LogToUnity("Get user inventory request failed");
         });
         
         PlayFabClientAPI.GetUserData(new GetUserDataRequest(), SlotsInitialized, error =>
         {
-            PlayfabUserManager.LogFailedRequest("Get user slots request failed", error);
+            error.LogToUnity("Get user slots request failed");
         });
     }
 
@@ -78,17 +57,14 @@ public class InventoryController : Controller
     {
         var inventoryItems = result.Inventory;
 
-        Bag.SetCurrency(result.VirtualCurrency[PlayfabStoreManager.CoinCurrencyKey]);
+        Bag.InitializeCurrency(result.VirtualCurrency[PlayfabUtils.CoinCurrencyKey]);
         
         foreach (var item in inventoryItems)
         {
-            PlayfabStoreManager.Instance.GetItem(item.ItemId, out var shopItem);
-            
-            PlayfabItemData itemData = JsonConvert.DeserializeObject<PlayfabItemData>(shopItem.PlayfabItem.CustomData);
-            
-            itemData.SetPlayfabItem(item);
-            
-            Bag.AddItem(itemData, true);
+            if (PlayfabStoreManager.Instance.GetItem(item.ItemId, out var itemData))
+            {
+                Bag.AddItem(itemData, true);
+            }
         }
         
         _itemsInitialized = true;
@@ -98,12 +74,12 @@ public class InventoryController : Controller
         if (_slotsInitialized) InvokeInventoryInitialized();
     }
 
-    public void EquipItem(string itemId)
+    public override void EquipItem(string itemId)
     {
         Bag.EquipItem(itemId);
     }
 
-    public void UnEquipSlot(ItemCategory category)
+    public override void UnEquipSlot(ItemCategory category)
     {
         Bag.UnEquipSlot(category);
     }

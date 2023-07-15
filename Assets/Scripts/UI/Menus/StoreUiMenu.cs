@@ -26,7 +26,7 @@ public class StoreUiMenu : UiMenu
         {
             ItemUiAdapter itemUiAdapter = Instantiate(_itemUiPrefab, _container);
             
-            itemUiAdapter.Attach(itemData);
+            itemUiAdapter.Attach(itemData, true);
         }
     }
 }

@@ -19,7 +19,7 @@ public class TopUiMenu : UiMenu
     {
         base.Initialize(rootUiElement);
 
-        _customIdLabel.text = PlayfabUserManager.CustomId;
+        _customIdLabel.text = PlayfabUserManager.Instance.CustomId;
         
         _logoutButton.onClick.AddListener(delegate { PlayfabUserManager.Instance.Logout(); });
 

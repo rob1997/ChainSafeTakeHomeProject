@@ -22,5 +22,7 @@ public interface IItemData : IDataModel
     
     ItemCategory Category { get; }
     
+    int Price { get; }
+    
     string SpriteAssetPath { get; }
 }

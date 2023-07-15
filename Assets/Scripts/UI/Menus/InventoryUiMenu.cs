@@ -42,11 +42,11 @@ public class InventoryUiMenu : UiMenu
 
     private void InitializeInventoryUi()
     {
-        void AttachItemUi(PlayfabItemData itemData)
+        void AttachItemUi(IItemData itemData)
         {
             ItemUiAdapter itemUiAdapter = Instantiate(_itemUiPrefab, _container);
             
-            itemUiAdapter.Attach(itemData);
+            itemUiAdapter.Attach(itemData, false);
         }
         
         foreach (var itemData in _inventoryController.Bag.AllItems)
@@ -87,7 +87,7 @@ public class InventoryUiMenu : UiMenu
         EquipUiItem(itemData);
     }
     
-    private void EquipUiItem(PlayfabItemData itemData)
+    private void EquipUiItem(IItemData itemData)
     {
         Utils.LoadAsset<Texture2D>(itemData.SpriteAssetPath, result =>
         {

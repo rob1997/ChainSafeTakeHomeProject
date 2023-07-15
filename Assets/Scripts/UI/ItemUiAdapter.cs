@@ -26,7 +26,7 @@ public class ItemUiAdapter : MonoBehaviour
     
     private InventoryController _inventoryController;
     
-    public void Attach(IItemData itemData)
+    public void Attach(IItemData itemData, bool isStoreDisplay)
     {
         _itemData = itemData;
 
@@ -36,27 +36,22 @@ public class ItemUiAdapter : MonoBehaviour
         
         _categoryLabel.text = Utils.GetDisplayName(_itemData.Category.ToString());
 
-        switch (_itemData)
+        if (isStoreDisplay)
         {
-            case PlayfabStoreItemData storeItemData:
+            _buttonText.text = "BUY";
+                
+            _priceLabel.text = $"{_itemData.Price}";
+                
+            _button.onClick.AddListener(BuyItem);
+        }
 
-                _buttonText.text = "BUY";
+        else
+        {
+            _price.gameObject.SetActive(false);
                 
-                _priceLabel.text = $"{storeItemData.Price}";
+            _buttonText.text = "Equip";
                 
-                _button.onClick.AddListener(BuyItem);
-                
-                break;
-            
-            case PlayfabItemData inventoryItemData:
-                
-                _price.gameObject.SetActive(false);
-                
-                _buttonText.text = "Equip";
-                
-                _button.onClick.AddListener(EquipItem);
-                
-                break;
+            _button.onClick.AddListener(EquipItem);
         }
     }
 
@@ -78,6 +73,6 @@ public class ItemUiAdapter : MonoBehaviour
 
     private void BuyItem()
     {
-        PlayfabStoreManager.Instance.BuyItem(_itemData.Id);
+        StoreManager.Instance.BuyItem(_itemData.Id);
     }
 }

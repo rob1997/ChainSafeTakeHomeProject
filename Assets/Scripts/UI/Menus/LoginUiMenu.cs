@@ -41,7 +41,7 @@ public class LoginUiMenu : UiMenu
 
         bool keepMeSignedIn = _keepMeSignedInToggle.isOn;
         
-        PlayfabUserManager.Instance.LoginAnonymously(customId, keepMeSignedIn, LoginFailed);
+        PlayfabUserManager.Instance.Login(customId, keepMeSignedIn, LoginFailed);
     }
 
     private void LoginSuccessful()
