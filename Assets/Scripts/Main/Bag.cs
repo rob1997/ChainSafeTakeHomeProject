@@ -63,16 +63,23 @@ public abstract class Bag
 
     public abstract List<IItemData> AllItems { get; }
     
-    public void InitializeCurrency(int currency)
+    public void Initialize(IItemData[] items, Dictionary<ItemCategory, string> slots, int currency)
     {
+        foreach (var itemData in items.Where(i => i != null))
+        {
+            AddItem(itemData, true);
+        }
+
+        Slots = slots;
+
         Currency = currency;
     }
-    
-    public void InitializeSlots(Dictionary<ItemCategory, string> slots)
-    {
-        Slots = slots;
-    }
 
+    /// <summary>
+    /// add Item to bag
+    /// </summary>
+    /// <param name="itemData">item to add</param>
+    /// <param name="silent">add silently without invoking events</param>
     public abstract void AddItem(IItemData itemData, bool silent = false);
     
     public void ItemPurchased(IItemData itemData, int amount)
@@ -86,5 +93,9 @@ public abstract class Bag
 
     public abstract void EquipItem(string itemId);
 
+    protected abstract void Equipped(IItemData itemData);
+    
     public abstract void UnEquipSlot(ItemCategory category);
+
+    protected abstract void UnEquipped(ItemCategory category);
 }

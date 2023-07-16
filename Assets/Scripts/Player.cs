@@ -6,6 +6,19 @@ using UnityEngine;
 
 public class Player : Character
 {
+    #region InstanceInitialized
+
+    public delegate void InstanceInitialized(Player instance);
+
+    public static event InstanceInitialized OnInstanceInitialized;
+
+    private void InvokeInstanceInitialized(Player instance)
+    {
+        OnInstanceInitialized?.Invoke(instance);
+    }
+
+    #endregion
+    
     public static Player Instance { get; private set; }
 
     private void Awake()
@@ -18,5 +31,7 @@ public class Player : Character
         }
 
         Instance = this;
+        
+        InvokeInstanceInitialized(Instance);
     }
 }

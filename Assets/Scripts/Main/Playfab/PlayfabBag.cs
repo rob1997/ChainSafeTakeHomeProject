@@ -30,45 +30,67 @@ public class PlayfabBag : Bag
 
     public override void EquipItem(string itemId)
     {
-        IItemData item = AllItems.FirstOrDefault(i => i.Id == itemId);
+        IItemData itemData = AllItems.FirstOrDefault(i => i.Id == itemId);
         
-        //already equipped
-        if (item == null || Slots[item.Category] == itemId)
+        //null item or already equipped
+        if (itemData == null || Slots[itemData.Category] == itemId)
             return;
+
+        //cache this value to revert in case of request fail
+        string equippedItemId = Slots[itemData.Category];
         
-        Slots[item.Category] = item.Id;
+        Slots[itemData.Category] = itemData.Id;
         
         PlayFabClientAPI.UpdateUserData(UpdateSlotsRequest, Equipped, error =>
         {
-            error.LogToUnity($"equipping item {item.DisplayName} failed");
+            //revert value
+            Slots[itemData.Category] = equippedItemId;
+            
+            error.LogToUnity($"equipping item {itemData.DisplayName} failed");
         });
 
         void Equipped(UpdateUserDataResult result)
         {
-            InvokeItemEquipped(item);
-            
-            Debug.Log($"equipped item {item.DisplayName}");
+            this.Equipped(itemData);
         }
     }
 
+    protected override void Equipped(IItemData itemData)
+    {
+        InvokeItemEquipped(itemData);
+            
+        Debug.Log($"equipped item {itemData.DisplayName}");
+    }
+    
     public override void UnEquipSlot(ItemCategory category)
     {
         //check if already unequipped
         if (string.IsNullOrEmpty(Slots[category]))
             return;
         
+        //cache this value to revert in case of request fail
+        string equippedItemId = Slots[category];
+        
         Slots[category] = string.Empty;
         
         PlayFabClientAPI.UpdateUserData(UpdateSlotsRequest, UnEquipped, error =>
         {
+            //revert value
+            Slots[category] = equippedItemId;
+            
             error.LogToUnity($"un equipping slot {category} failed");
         });
         
         void UnEquipped(UpdateUserDataResult result)
         {
-            InvokeSlotUnEquipped(category);
-            
-            Debug.Log($"un equipped slot {category}");
+            this.UnEquipped(category);
         }
+    }
+
+    protected override void UnEquipped(ItemCategory category)
+    {
+        InvokeSlotUnEquipped(category);
+            
+        Debug.Log($"un equipped slot {category}");
     }
 }

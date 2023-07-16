@@ -19,9 +19,9 @@ public class TopUiMenu : UiMenu
     {
         base.Initialize(rootUiElement);
 
-        _customIdLabel.text = PlayfabUserManager.Instance.CustomId;
+        _customIdLabel.text = UserManager.Instance.CustomId;
         
-        _logoutButton.onClick.AddListener(delegate { PlayfabUserManager.Instance.Logout(); });
+        _logoutButton.onClick.AddListener(delegate { UserManager.Instance.Logout(); });
 
         //initialize and set currency
         Player.Instance.GetController(out InventoryController inventoryController);

@@ -101,6 +101,10 @@ MonoBehaviour:
     m_Address: Assets/Art/Textures/BlueHat.png
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 01e7da67be1e7fa4a852a279b2f8a10e
+    m_Address: Assets/Prefabs/UI/ItemUi.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: a947733d22866814685b726ba1d4c48c, type: 2}
   m_SchemaSet:

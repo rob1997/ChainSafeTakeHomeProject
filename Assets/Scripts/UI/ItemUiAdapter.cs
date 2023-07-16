@@ -26,35 +26,41 @@ public class ItemUiAdapter : MonoBehaviour
     
     private InventoryController _inventoryController;
     
-    public void Attach(IItemData itemData, bool isStoreDisplay)
+    private void Attach(IItemData itemData)
     {
         _itemData = itemData;
 
+        Player.Instance.GetController(out _inventoryController);
+        
         AttachIcon();
         
         _displayNameLabel.text = _itemData.DisplayName;
         
         _categoryLabel.text = Utils.GetDisplayName(_itemData.Category.ToString());
-
-        if (isStoreDisplay)
-        {
-            _buttonText.text = "BUY";
-                
-            _priceLabel.text = $"{_itemData.Price}";
-                
-            _button.onClick.AddListener(BuyItem);
-        }
-
-        else
-        {
-            _price.gameObject.SetActive(false);
-                
-            _buttonText.text = "Equip";
-                
-            _button.onClick.AddListener(EquipItem);
-        }
     }
 
+    public void AttachStoreItem(IItemData itemData)
+    {
+        Attach(itemData);
+        
+        _buttonText.text = "BUY";
+                
+        _priceLabel.text = $"{_itemData.Price}";
+                
+        _button.onClick.AddListener(BuyItem);
+    }
+    
+    public void AttachInventoryItem(IItemData itemData)
+    {
+        Attach(itemData);
+        
+        _price.gameObject.SetActive(false);
+                
+        _buttonText.text = "EQUIP";
+                
+        _button.onClick.AddListener(EquipItem);
+    }
+    
     private void AttachIcon()
     {
         Utils.LoadAsset<Texture2D>(_itemData.SpriteAssetPath, result =>
@@ -65,9 +71,6 @@ public class ItemUiAdapter : MonoBehaviour
 
     private void EquipItem()
     {
-        if (_inventoryController == null)
-            Player.Instance.GetController(out _inventoryController);
-
         _inventoryController.EquipItem(_itemData.Id);
     }
 

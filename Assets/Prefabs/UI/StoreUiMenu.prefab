@@ -1049,5 +1049,9 @@ MonoBehaviour:
   <UiMenuType>k__BackingField: Store
   <UnloadMode>k__BackingField: 0
   <UiTransition>k__BackingField: {fileID: 0}
-  _itemUiPrefab: {fileID: 1771377986505690285, guid: 01e7da67be1e7fa4a852a279b2f8a10e, type: 3}
+  _itemUiPrefabReference:
+    m_AssetGUID: 01e7da67be1e7fa4a852a279b2f8a10e
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _container: {fileID: 142386922}

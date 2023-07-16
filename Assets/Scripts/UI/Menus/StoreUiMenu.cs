@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core.Utils;
 using Ui.Main;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 public class StoreUiMenu : UiMenu
 {
-    [SerializeField] private ItemUiAdapter _itemUiPrefab;
+    [SerializeField] private AssetReference _itemUiPrefabReference;
     
     [SerializeField] private Transform _container;
     
@@ -13,20 +15,23 @@ public class StoreUiMenu : UiMenu
     {
         base.Initialize(rootUiElement);
 
-        if (PlayfabStoreManager.Instance.IsStoreInitialized)
+        if (StoreManager.Instance.IsStoreInitialized)
             InitializeStoreUi();
 
         else
-            PlayfabStoreManager.Instance.OnStoreInitialized += InitializeStoreUi;
+            StoreManager.Instance.OnStoreInitialized += InitializeStoreUi;
     }
 
     private void InitializeStoreUi()
     {
-        foreach (var itemData in PlayfabStoreManager.Instance.AllItems)
+        Utils.LoadObjComponent<ItemUiAdapter>(_itemUiPrefabReference.AssetGUID, itemUiAdapter =>
         {
-            ItemUiAdapter itemUiAdapter = Instantiate(_itemUiPrefab, _container);
+            foreach (var itemData in StoreManager.Instance.AllItems)
+            {
+                itemUiAdapter = Instantiate(itemUiAdapter, _container);
             
-            itemUiAdapter.Attach(itemData, true);
-        }
+                itemUiAdapter.AttachStoreItem(itemData);
+            }
+        });
     }
 }

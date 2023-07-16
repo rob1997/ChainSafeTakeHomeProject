@@ -4,6 +4,19 @@ namespace Core.Utils
 {
     public class Singleton<T> : MonoBehaviour where T : Singleton<T>
     {
+        #region InstanceInitialized
+
+        public delegate void InstanceInitialized(T instance);
+
+        public static event InstanceInitialized OnInstanceInitialized;
+
+        private void InvokeInstanceInitialized(T instance)
+        {
+            OnInstanceInitialized?.Invoke(instance);
+        }
+
+        #endregion
+        
         static T _instance;
     
         public static T Instance => _instance;
@@ -23,6 +36,8 @@ namespace Core.Utils
             {
                 _instance = (T) this;
 
+                InvokeInstanceInitialized(_instance);
+                
                 if (_dontDestroyOnLoad) DontDestroyOnLoad(gameObject);
             }
         }

@@ -24,11 +24,11 @@ public class LoginUiMenu : UiMenu
         {
             if (state == UiMenuState.Loaded)
             {
-                if (PlayfabUserManager.Instance.IsAuthenticated)
+                if (UserManager.Instance.IsAuthenticated)
                     LoginSuccessful();
 
                 else
-                    PlayfabUserManager.Instance.OnAuthenticated += LoginSuccessful;
+                    UserManager.Instance.OnAuthenticated += LoginSuccessful;
             }
         };
         
@@ -41,7 +41,7 @@ public class LoginUiMenu : UiMenu
 
         bool keepMeSignedIn = _keepMeSignedInToggle.isOn;
         
-        PlayfabUserManager.Instance.Login(customId, keepMeSignedIn, LoginFailed);
+        UserManager.Instance.Login(customId, keepMeSignedIn, LoginFailed);
     }
 
     private void LoginSuccessful()

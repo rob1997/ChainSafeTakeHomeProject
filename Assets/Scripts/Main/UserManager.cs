@@ -8,8 +8,6 @@ public delegate void LoginFailed(string errorMessage);
 
 public abstract class UserManager : Manager<UserManager>
 {
-    public string CustomId { get; protected set; }
-    
     #region Authenticated
 
     public delegate void Authenticated();
@@ -27,12 +25,16 @@ public abstract class UserManager : Manager<UserManager>
 
     #endregion
     
+    public string CustomId { get; protected set; }
+
     public bool IsAuthenticated { get; private set; }
     
     public abstract void Login(string customId, bool keepMeSignedIn = true, LoginFailed onFailed = null);
 
     protected void LoginSuccessful(bool keepMeSignedIn)
     {
+        Debug.Log($"{CustomId} logged in successfully");
+        
         if (keepMeSignedIn)
         {
             PlayerPrefs.SetString(nameof(CustomId), CustomId);
@@ -43,8 +45,6 @@ public abstract class UserManager : Manager<UserManager>
         InvokeAuthenticated();
         
         GameManager.Instance.FinishedLoading();
-        
-        Debug.Log($"{CustomId} logged in successfully");
     }
     
     public abstract void Logout();

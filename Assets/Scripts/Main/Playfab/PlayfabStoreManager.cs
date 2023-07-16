@@ -13,12 +13,10 @@ public class PlayfabStoreManager : StoreManager
 {
     public const string CatalogVersion = "1.0";
 
-    private readonly List<PlayfabItemData> _allItems = new List<PlayfabItemData>();
+    private List<PlayfabItemData> _allItems = new List<PlayfabItemData>();
 
     public override List<IItemData> AllItems => _allItems.ConvertAll(i => (IItemData) i);
 
-    private InventoryController _inventoryController;
-    
     protected override void InitializeStore()
     {
         var catalogRequest = new GetCatalogItemsRequest
@@ -33,12 +31,7 @@ public class PlayfabStoreManager : StoreManager
         
         void StoreInitialized(GetCatalogItemsResult result)
         {
-            foreach (var catalogItem in result.Catalog)
-            {
-                var itemData = PlayfabItemData.Create(catalogItem);
-                
-                _allItems.Add(itemData);
-            }
+            _allItems = result.Catalog.ConvertAll(PlayfabItemData.Create);
             
             Debug.Log("Catalog items initialized");
             
@@ -48,8 +41,10 @@ public class PlayfabStoreManager : StoreManager
 
     public override void BuyItem(string itemId)
     {
-        var itemData = _allItems.FirstOrDefault(i => i.Id == itemId);
-
+        //if item doesn't exist return
+        if (!GetItem(itemId, out IItemData itemData))
+            return;
+        
         var purchaseRequest = new PurchaseItemRequest
         {
             CatalogVersion = CatalogVersion,
@@ -80,9 +75,7 @@ public class PlayfabStoreManager : StoreManager
 
     protected override void ItemPurchased(IItemData itemData)
     {
-        if (_inventoryController == null) Player.Instance.GetController(out _inventoryController);
-        
-        _inventoryController.Bag.ItemPurchased(itemData, ((PlayfabItemData) itemData).Price);
+        InventoryController.Bag.ItemPurchased(itemData, itemData.Price);
             
         Debug.Log($"{itemData.DisplayName} item purchased");
     }

@@ -18,7 +18,7 @@ public struct SlotUi
 
 public class InventoryUiMenu : UiMenu
 {
-    [SerializeField] private ItemUiAdapter _itemUiPrefab;
+    [SerializeField] private AssetReference _itemUiPrefabReference;
     
     [SerializeField] private Transform _container;
 
@@ -42,13 +42,6 @@ public class InventoryUiMenu : UiMenu
 
     private void InitializeInventoryUi()
     {
-        void AttachItemUi(IItemData itemData)
-        {
-            ItemUiAdapter itemUiAdapter = Instantiate(_itemUiPrefab, _container);
-            
-            itemUiAdapter.Attach(itemData, false);
-        }
-        
         foreach (var itemData in _inventoryController.Bag.AllItems)
         {
             AttachItemUi(itemData);
@@ -75,6 +68,16 @@ public class InventoryUiMenu : UiMenu
         }
     }
 
+    void AttachItemUi(IItemData itemData)
+    {
+        Utils.LoadObjComponent<ItemUiAdapter>(_itemUiPrefabReference.AssetGUID, itemUiAdapter =>
+        {
+            itemUiAdapter = Instantiate(itemUiAdapter, _container);
+            
+            itemUiAdapter.AttachInventoryItem(itemData);
+        });
+    }
+    
     private void UnEquipUiSlot(ItemCategory category)
     {
         SlotsUiLookup[category].Image.sprite = null;

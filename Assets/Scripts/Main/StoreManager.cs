@@ -25,6 +25,21 @@ public abstract class StoreManager : Manager<StoreManager>
 
     public abstract List<IItemData> AllItems { get; }
     
+    protected InventoryController InventoryController
+    {
+        get
+        {
+            if (_inventoryController == null)
+            {
+                Player.Instance.GetController(out _inventoryController);
+            }
+
+            return _inventoryController;
+        }
+    }
+
+    private InventoryController _inventoryController;
+    
     public override void Initialize()
     {
         if (UserManager.Instance.IsAuthenticated)
@@ -49,7 +64,7 @@ public abstract class StoreManager : Manager<StoreManager>
         
         return false;
     }
-
+    
     public abstract void BuyItem(string itemId);
 
     protected abstract void ItemPurchased(IItemData itemData);

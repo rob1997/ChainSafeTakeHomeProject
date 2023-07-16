@@ -31,6 +31,12 @@ public class PlayfabUserManager : UserManager
 
     public override void Login(string customId, bool keepMeSignedIn = true, LoginFailed onFailed = null)
     {
+        //already logged in
+        if (IsAuthenticated)
+            return;
+        
+        Debug.Log($"logging in {customId}...");
+        
         //login
         var loginRequest = new LoginWithCustomIDRequest
         {
@@ -45,6 +51,9 @@ public class PlayfabUserManager : UserManager
         
         void LoginFailed(PlayFabError error)
         {
+            //revert value
+            CustomId = string.Empty;
+            
             error.LogToUnity("login with custom Id failed");
             
             onFailed?.Invoke(error.ErrorMessage);
@@ -54,9 +63,7 @@ public class PlayfabUserManager : UserManager
     public override void Logout()
     {
         if (!IsAuthenticated)
-        {
             return;
-        }
         
         Debug.Log($"Logging out {CustomId}...");
         
