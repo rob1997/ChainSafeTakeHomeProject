@@ -7,8 +7,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CustomEditor(typeof(InventoryUiMenu))]
-public class InventoryUiMenuEditor : UnityEditor.Editor
+[CustomEditor(typeof(SlotsUiAdapter))]
+public class SlotsUiAdapterEditor : UnityEditor.Editor
 {
     private bool _slotsFoldout;
     
@@ -17,11 +17,11 @@ public class InventoryUiMenuEditor : UnityEditor.Editor
         DrawDefaultInspector();
 
         _slotsFoldout =
-            EditorGUILayout.Foldout(_slotsFoldout, Utils.GetDisplayName(nameof(InventoryUiMenu.SlotsUiLookup)));
+            EditorGUILayout.Foldout(_slotsFoldout, Utils.GetDisplayName(nameof(SlotsUiAdapter.SlotsUiLookup)));
         
         if (_slotsFoldout)
         {
-            BaseEditor.DrawEnumDict<ItemCategory, SlotUi>(serializedObject.FindProperty(nameof(InventoryUiMenu.SlotsUiLookup)), DrawValue);
+            BaseEditor.DrawEnumDict<ItemCategory, SlotUi>(serializedObject.FindProperty(nameof(SlotsUiAdapter.SlotsUiLookup)), DrawValue);
         }
 
         serializedObject.ApplyModifiedProperties();

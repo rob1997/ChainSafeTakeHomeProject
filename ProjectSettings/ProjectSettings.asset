@@ -154,7 +154,8 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Standalone: com.DefaultCompany.ChainSafeTakeHomeProject
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -616,10 +617,12 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   webGLPowerPreference: 2
   scriptingDefineSymbols:
+    Server: ENABLE_PLAYFABADMIN_API;DEDICATED_SERVER
     Standalone: ENABLE_PLAYFABADMIN_API
   additionalCompilerArguments: {}
   platformArchitecture: {}
-  scriptingBackend: {}
+  scriptingBackend:
+    Standalone: 0
   il2cppCompilerConfiguration: {}
   managedStrippingLevel: {}
   incrementalIl2cppBuild: {}
@@ -707,11 +710,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: da6c1eea-e482-4da7-b87e-e5bd0ca3ea2e
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: ChainSafeTakeHomeProject
+  organizationId: r0b_g
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 

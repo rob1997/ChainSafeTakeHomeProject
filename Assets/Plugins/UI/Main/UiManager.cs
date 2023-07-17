@@ -48,7 +48,7 @@ namespace Ui.Main
                 
                 case GameState.Play:
                     //lock cursor on play/in Game
-                    Cursor.lockState = CursorLockMode.Locked;
+                    //Cursor.lockState = CursorLockMode.Locked;
                     break;
                     
                 case GameState.Pause:
@@ -64,6 +64,8 @@ namespace Ui.Main
         /// <param name="sceneBuildIndex">build index for a loaded scene</param>
         private void TryLoadLandingUiMenus(int sceneBuildIndex)
         {
+            Debug.Log($"Loading {nameof(UiReferences.LandingUiMenus)} for scene {sceneBuildIndex}...");
+            
             if (UiReferences.LandingUiMenus.ContainsKey(sceneBuildIndex))
             {
                 foreach (string uiMenuType in UiReferences.LandingUiMenus[sceneBuildIndex])

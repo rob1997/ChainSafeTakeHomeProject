@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Core.Character;
+using Core.Utils;
 using Newtonsoft.Json;
 using PlayFab;
 using PlayFab.ClientModels;
@@ -21,22 +23,39 @@ public class PlayfabInventoryController : InventoryController
         bool itemsInitialized = false;
         
         bool slotsInitialized = false;
-        
-        //initialize items
-        PlayFabClientAPI.GetUserInventory(new GetUserInventoryRequest(), ItemsInitialized, error =>
+
+        var inventoryRequest = new ExecuteCloudScriptRequest
         {
-            error.LogToUnity("Get user inventory request failed");
+            FunctionName = PlayfabUtils.GetUserInventoryCloudFunctionName,
+
+            FunctionParameter = Player.NetworkId
+
+        };
+        
+        //get user inventory
+        PlayFabClientAPI.ExecuteCloudScript(inventoryRequest, ItemsInitialized, error =>
+        {
+            error.LogToUnity($"{PlayfabUtils.GetUserInventoryCloudFunctionName} cloud function failed");
         });
         
-        //initialize slots
-        PlayFabClientAPI.GetUserData(new GetUserDataRequest(), SlotsInitialized, error =>
+        var characterDataRequest = new ExecuteCloudScriptRequest
         {
-            error.LogToUnity("Get user slots request failed");
+            FunctionName = PlayfabUtils.GetUserDataCloudFunctionName,
+            
+            FunctionParameter = Player.NetworkId
+        };
+        
+        //get user data
+        PlayFabClientAPI.ExecuteCloudScript(characterDataRequest, SlotsInitialized, error =>
+        {
+            error.LogToUnity($"{PlayfabUtils.GetUserDataCloudFunctionName} cloud function failed");
         });
 
-        void ItemsInitialized(GetUserInventoryResult result)
+        void ItemsInitialized(ExecuteCloudScriptResult result)
         {
-            (items, currency) = this.ItemsInitialized(result);
+            var inventoryResult = JsonConvert.DeserializeObject<GetUserInventoryResult>(result.FunctionResult.ToString());
+            
+            (items, currency) = this.ItemsInitialized(inventoryResult);
 
             itemsInitialized = true;
 
@@ -45,9 +64,13 @@ public class PlayfabInventoryController : InventoryController
                 InventoryValuesInitialized(items, slots, currency);
         }
 
-        void SlotsInitialized(GetUserDataResult result)
+        void SlotsInitialized(ExecuteCloudScriptResult result)
         {
-            slots = this.SlotsInitialized(result);
+            var userDataResult = JsonConvert.DeserializeObject<GetUserDataResult>(result.FunctionResult.ToString());
+
+            //check if slots were initialized
+            slots = userDataResult.Data.ContainsKey(nameof(Bag.Slots)) ? 
+                this.SlotsInitialized(userDataResult) : Utils.GetEnumValues<ItemCategory>().ToDictionary(c => c, c => string.Empty);
 
             slotsInitialized = true;
 

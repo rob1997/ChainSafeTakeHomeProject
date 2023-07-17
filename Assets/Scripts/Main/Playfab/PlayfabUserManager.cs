@@ -47,7 +47,7 @@ public class PlayfabUserManager : UserManager
 
         CustomId = customId;
         
-        PlayFabClientAPI.LoginWithCustomID(loginRequest, result => { LoginSuccessful(keepMeSignedIn); }, LoginFailed);
+        PlayFabClientAPI.LoginWithCustomID(loginRequest, LoginSuccessful, LoginFailed);
         
         void LoginFailed(PlayFabError error)
         {
@@ -57,6 +57,13 @@ public class PlayfabUserManager : UserManager
             error.LogToUnity("login with custom Id failed");
             
             onFailed?.Invoke(error.ErrorMessage);
+        }
+        
+        void LoginSuccessful(LoginResult result)
+        {
+            NetworkId = result.PlayFabId;
+            
+            this.LoginSuccessful(keepMeSignedIn);
         }
     }
     

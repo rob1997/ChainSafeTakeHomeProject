@@ -26,6 +26,8 @@ public abstract class UserManager : Manager<UserManager>
     #endregion
     
     public string CustomId { get; protected set; }
+    
+    public string NetworkId { get; protected set; }
 
     public bool IsAuthenticated { get; private set; }
     

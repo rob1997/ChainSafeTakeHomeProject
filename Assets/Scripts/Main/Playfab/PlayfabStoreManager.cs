@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using PlayFab;
 using PlayFab.ClientModels;
 using PlayFab.SharedModels;
+using Unity.Netcode;
 using UnityEngine;
 
 public class PlayfabStoreManager : StoreManager

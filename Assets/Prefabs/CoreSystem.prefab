@@ -1,5 +1,66 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &952936354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 952936355}
+  - component: {fileID: 952936357}
+  - component: {fileID: 952936356}
+  m_Layer: 5
+  m_Name: OverlayUiRegion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &952936355
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952936354}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2262656873535670043}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0.85}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &952936357
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952936354}
+  m_CullTransparentMesh: 1
+--- !u!114 &952936356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952936354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9ad009fc311d7642b2cfe4e5d5d62ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsCancelSensitive>k__BackingField: 1
+  <InheritCancelAction>k__BackingField: 1
+  <UiRegionType>k__BackingField: Overlay
 --- !u!1 &2262656872678362196
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +266,9 @@ RectTransform:
   m_Children:
   - {fileID: 2262656873545706129}
   - {fileID: 2262656873331324181}
+  - {fileID: 3976733016909855396}
   - {fileID: 2262656873628739163}
+  - {fileID: 952936355}
   m_Father: {fileID: 2262656874446354554}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -391,9 +454,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2262656873535670043}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMin: {x: 0.75, y: 0}
   m_AnchorMax: {x: 1, y: 0.85}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -570,8 +633,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5805159c5777d6d41b3bc08a194aeda4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dontDestroyOnLoad: 0
   <LandingScene>k__BackingField: 1
-  <GameScene>k__BackingField: 1
+  <GameScene>k__BackingField: 2
 --- !u!114 &4346379818222560606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,6 +648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ac19a3d8be31d4da5cd296074e1a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dontDestroyOnLoad: 0
 --- !u!114 &6438588301595876018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,6 +661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 724e3491af106684a99e28ecd218a7b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dontDestroyOnLoad: 0
 --- !u!114 &2262656873940616611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -608,6 +674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f408b6a19df507468b8d0da12bdb0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dontDestroyOnLoad: 0
   <UiRoot>k__BackingField: {fileID: 2262656874446354555}
   <UiPreferences>k__BackingField: {fileID: 11400000, guid: bd75a501ee57b094dbecaded8f3518bd, type: 2}
   <UiReferences>k__BackingField: {fileID: 11400000, guid: 41733ae5b80f1e44987c527ff1f30d6d, type: 2}
@@ -623,6 +690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5a68d03d6e49849a516dea2f114a55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dontDestroyOnLoad: 0
 --- !u!1 &2262656874446354553
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,3 +822,64 @@ MonoBehaviour:
   <IsCancelSensitive>k__BackingField: 1
   <InheritCancelAction>k__BackingField: 1
   <UiRegionType>k__BackingField: Main
+--- !u!1 &7337159151317095865
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3976733016909855396}
+  - component: {fileID: 342774123652281539}
+  - component: {fileID: 6987118762503311966}
+  m_Layer: 5
+  m_Name: MidUiRegion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3976733016909855396
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7337159151317095865}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2262656873535670043}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.75, y: 0.85}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &342774123652281539
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7337159151317095865}
+  m_CullTransparentMesh: 1
+--- !u!114 &6987118762503311966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7337159151317095865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9ad009fc311d7642b2cfe4e5d5d62ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsCancelSensitive>k__BackingField: 1
+  <InheritCancelAction>k__BackingField: 1
+  <UiRegionType>k__BackingField: Mid

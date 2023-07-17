@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Core.Character;
+using Unity.Netcode;
 using UnityEngine;
 
 public abstract class InventoryController : Controller
@@ -24,10 +25,14 @@ public abstract class InventoryController : Controller
     public bool IsInventoryInitialized { get; private set; }
     
     public abstract Bag Bag { get; protected set; }
+
+    protected Player Player { get; private set; }
     
     public override void Initialize(Character character)
     {
         base.Initialize(character);
+
+        Player = (Player) character;
         
         if (!StoreManager.Instance.IsStoreInitialized)
         {

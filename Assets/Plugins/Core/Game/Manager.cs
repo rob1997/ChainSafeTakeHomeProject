@@ -32,9 +32,22 @@ namespace Core.Game
 
         private void OnEnable()
         {
-            Initialize();
+            if (GameManager.Instance.IsReady)
+            {
+                Initialize();
             
-            InvokeReady();
+                InvokeReady();
+            }
+
+            else
+            {
+                GameManager.Instance.OnReady += delegate
+                {
+                    Initialize();
+            
+                    InvokeReady();
+                };
+            }
         }
 
         public abstract void Initialize();

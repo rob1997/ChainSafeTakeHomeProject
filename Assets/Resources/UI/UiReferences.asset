@@ -38,10 +38,24 @@ MonoBehaviour:
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 1
+    - Key: Slots
+      Value:
+        m_AssetGUID: a1e25cd3ccca8e24fb6af0b6c468d6d6
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 1
+    - Key: Lobby
+      Value:
+        m_AssetGUID: d5ea1d859c7ae0540a02454a3e5d5f33
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 1
   UiRegionTypes:
   - Main
   - Top
   - Right
+  - Mid
+  - Overlay
   UiLayerTypes:
   - Main
   - Overlay
@@ -55,4 +69,8 @@ MonoBehaviour:
       - Store
       - Top
       - Inventory
+      - Slots
+    - Key: 2
+      Value:
+      - Lobby
   <DefaultUiModalMenuType>k__BackingField: Store

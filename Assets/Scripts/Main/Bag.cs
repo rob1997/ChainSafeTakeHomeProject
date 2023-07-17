@@ -75,6 +75,24 @@ public abstract class Bag
         Currency = currency;
     }
 
+    public void InitializeSlots(Dictionary<ItemCategory, string> slots)
+    {
+        Slots = slots;
+
+        //equip and unEquip items
+        foreach (var pair in Slots)
+        {
+            if (string.IsNullOrEmpty(pair.Value))
+                InvokeSlotUnEquipped(pair.Key);
+
+            else
+            {
+                if (StoreManager.Instance.GetItem(pair.Value, out IItemData itemData))
+                    InvokeItemEquipped(itemData);
+            }
+        }
+    }
+    
     /// <summary>
     /// add Item to bag
     /// </summary>

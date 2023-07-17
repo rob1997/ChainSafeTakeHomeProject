@@ -105,6 +105,26 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/UI/ItemUi.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: a1e25cd3ccca8e24fb6af0b6c468d6d6
+    m_Address: Assets/Prefabs/UI/SlotsUiMenu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 347d0f073a5eda741b6f4058a9bce9ae
+    m_Address: Assets/Prefabs/UI/SlotsUi.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d5ea1d859c7ae0540a02454a3e5d5f33
+    m_Address: Assets/Prefabs/UI/LobbyUiMenu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: de9141847da082d4faf5d0bcff9c8173
+    m_Address: Assets/Prefabs/UI/LobbySlotsUi.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 342bba7058ef8814aa2a054cb875d1f7
+    m_Address: Assets/Prefabs/DedicatedServer.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: a947733d22866814685b726ba1d4c48c, type: 2}
   m_SchemaSet:

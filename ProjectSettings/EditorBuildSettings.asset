@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/1_Landing.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/2_Game.unity
+    guid: fa82e26700cc72a4da9e62ff2996f93b
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: c0f2da675e26dd74693485204fa05cfc, type: 2}

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Core.Game;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace Core.Character

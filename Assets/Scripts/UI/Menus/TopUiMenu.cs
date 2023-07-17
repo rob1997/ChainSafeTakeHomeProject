@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core.Game;
 using TMPro;
 using Ui.Main;
 using UnityEngine;
@@ -12,6 +13,10 @@ public class TopUiMenu : UiMenu
     [SerializeField] private TMP_Text _currencyLabel;
     
     [SerializeField] private Button _logoutButton;
+    
+    [SerializeField] private Button _startButton;
+    
+    [SerializeField] private Toggle _isHostToggle;
 
     private int _currencyCopy;
     
@@ -22,6 +27,8 @@ public class TopUiMenu : UiMenu
         _customIdLabel.text = UserManager.Instance.CustomId;
         
         _logoutButton.onClick.AddListener(delegate { UserManager.Instance.Logout(); });
+        
+        _startButton.onClick.AddListener(delegate { GameManager.Instance.StartGame(false, _isHostToggle.isOn); });
 
         //initialize and set currency
         Player.Instance.GetController(out InventoryController inventoryController);

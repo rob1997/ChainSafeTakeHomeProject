@@ -5,6 +5,8 @@ using System.Linq;
 using Core.Character;
 using Core.Game;
 using Core.Utils;
+using Unity.Netcode;
+using Unity.Services.Core;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -125,7 +127,7 @@ namespace Core.Game
             InvokeGameStateChanged(State);
         }
         
-        public void StartGame(bool continued)
+        public void StartGame(bool continued, bool isHost)
         {
             if (continued)
             {
@@ -134,7 +136,7 @@ namespace Core.Game
 
             else
             {
-                StartNewGame();
+                StartNewGame(isHost);
             }
         }
 
@@ -144,7 +146,7 @@ namespace Core.Game
             //implement
         }
 
-        private void StartNewGame()
+        private void StartNewGame(bool isHost)
         {
             //change to loading until scene loads async
             ChangeGameState(GameState.Loading);
@@ -152,12 +154,18 @@ namespace Core.Game
             Debug.Log("Loading New Game...");
             
             //load game scene and call onSceneLoaded
-            Utils.Utils.LoadScene(GameScene, NewGameStarted);
+            Utils.Utils.LoadScene(GameScene, delegate { NewGameStarted(isHost); });
         }
 
         //when game scene finished loading
-        void NewGameStarted()
+        void NewGameStarted(bool isHost)
         {
+            if (isHost)
+                NetworkManager.Singleton.StartHost();
+            
+            else
+                NetworkManager.Singleton.StartClient();
+            
             ChangeGameState(GameState.Play);
                 
             Debug.Log("Loaded New Game");
@@ -190,7 +198,7 @@ namespace Core.Game
                     break;
                 
                 default:
-                    Debug.LogError($"can't exit {nameof(GameScene)} when {nameof(GameState)} is {State}");
+                    Debug.LogWarning($"can't exit {nameof(GameScene)} when {nameof(GameState)} is {State}");
                     return;
             }
         }

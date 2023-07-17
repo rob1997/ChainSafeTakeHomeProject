@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Core.Game;
 using Core.Utils;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace Core.Character
 {
-    public abstract class Character : MonoBehaviour
+    public abstract class Character : NetworkBehaviour
     {
         #region Ready
 
@@ -73,19 +74,6 @@ namespace Core.Character
                 if (!TryGetComponent(out _characterController)) Debug.LogError("Character Controller Component not found on Character");
 
                 return _characterController;
-            }
-        }
-        
-        protected virtual void Start()
-        {
-            if (GameManager.Instance.IsReady)
-            {
-                Initialize();
-            }
-
-            else
-            {
-                GameManager.Instance.OnReady += Initialize;
             }
         }
 
